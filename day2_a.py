@@ -1,6 +1,6 @@
 import string
 
-filename = "input2.txt"
+filename = "inputData/input2.txt"
 
 file = open(filename)
 

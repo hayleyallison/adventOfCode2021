@@ -29,7 +29,7 @@ def remove_noncomplies(nums, targetbit, i):
 
 ###########################################################
 
-filename = 'input3.txt'
+filename = 'inputData/input3.txt'
 file = open(filename)
 
 nums_ox = []

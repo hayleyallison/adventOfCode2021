@@ -1,4 +1,4 @@
-filename = 'input3.txt'
+filename = 'inputData/input3.txt'
 file = open(filename)
 
 bit_d = dict()

@@ -1,6 +1,6 @@
 import numpy as np
 
-filename = 'input5.txt'
+filename = 'inputData/input5.txt'
 file     = open(filename)
 
 # get coordinates from file

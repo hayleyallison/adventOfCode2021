@@ -1,6 +1,6 @@
 import numpy as np
 
-filename = 'input4.txt'
+filename = 'inputData/input4.txt'
 file = open(filename)
 
 call = ''

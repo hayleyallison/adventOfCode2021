@@ -1,3 +1,5 @@
+# Almost the same as day5_a.py but with a else case added for the diagonals
+
 import numpy as np
 
 filename = 'input5.txt'

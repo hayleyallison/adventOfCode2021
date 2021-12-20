@@ -71,7 +71,7 @@ for key in dic2str:
         letters[l] = dic2str[key]
     else:
         letters[l] += dic2str[key]
-letters['V'] += 1
+letters['V'] += 1   #because first is the same as last and both are V
 
 # calculate the most common minus least common
 most  = 0

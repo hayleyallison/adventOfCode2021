@@ -52,5 +52,26 @@ grid     = expand_grid(read_input(filename))
 xlen = len(grid[1,:])
 ylen = len(grid[:,1])
 
-print(grid.shape)
+# start dijkstras algorithm
+start       = (0,0)
+destination = (ylen-1, xlen-1)
+visited      = np.zeros(grid.shape, dtype=bool)
+distances   = np.full(grid.shape, np.inf, dtype=float)
+offsets     = [(-1,0), (1,0), (0,1), (0,-1)]
 
+distances[start] = 0
+pos = start
+while not visited[destination]:
+    if not visited[pos]:
+        for offset in offsets:
+            adjacent = (pos[0] + offset[0], pos[1] + offset[1])
+            if (adjacent[0] >= 0) & (adjacent[0] < ylen) & (adjacent[1] >= 0) & (adjacent[1] < xlen):
+                if (distances[pos] + grid[adjacent]) < distances[adjacent]:
+                    distances[adjacent] = distances[pos] + grid[adjacent]
+        visited[pos] = True
+    # find minimum unvisited node (so min distance val and visited is false)
+    min_d = np.where(np.logical_and(distances == np.amin(distances[np.invert(visited)]), np.invert(visited)))
+    pos   = (min_d[0][0], min_d[1][0])
+    if pos == destination: break
+
+print(distances[destination])

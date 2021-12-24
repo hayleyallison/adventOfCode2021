@@ -23,6 +23,27 @@ for line in lines:
 xlen = len(grid[1,:])
 ylen = len(grid[:,1])
 
+expanded_grid = np.zeros((ylen*5, xlen*5))
+new_grid = grid
+
+expanded_grid[0:ylen, 0:xlen] = grid
+for i in range(4):
+    new_grid = new_grid + 1
+    new_grid[new_grid > 9] = 1
+    expanded_grid[0:ylen, (xlen*(i+1)):(xlen*(i+2))] = new_grid
+new_grid = grid
+for j in range(1,5):
+    for i in range(5):
+        new_grid = new_grid + 1
+        new_grid[new_grid > 9] = 1
+        if i == 0: row_start_grid = new_grid
+        expanded_grid[(ylen*j):(ylen*(j+1)), (xlen*(i)):(xlen*(i+1))] = new_grid
+    new_grid = row_start_grid
+
+grid = expanded_grid
+xlen = len(grid[1,:])
+ylen = len(grid[:,1])
+
 pos = (0,0)
 destination = (ylen-1,xlen-1)
 
@@ -33,6 +54,7 @@ optim.put((0, pos))
 
 offsets = [(-1,0), (1,0), (0,1), (0,-1)]
 
+#for _ in range(4):
 pos = (0,0)
 found = False
 while not optim.empty():
@@ -50,5 +72,6 @@ while not optim.empty():
                 risk_track[new_pos] = new_risk
                 optim.put(((new_risk+abs(new_pos[0]-destination[0])+abs(new_pos[1]-destination[1])),new_pos))
                 if new_pos not in been_to: been_to.append(new_pos)
-    if found: break
+
+
 print(risk_track[destination])
